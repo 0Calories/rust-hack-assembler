@@ -1,7 +1,7 @@
 mod code {
     use phf::phf_map;
 
-    // Maps string representations of computation instructions into their binary equivalent
+    // Maps string representations of the comp portion of c-instructions to their binary equivalent
     static COMP_TABLE: phf::Map<&'static str, &'static str> = phf_map! {
         "0"     => "0101010",
         "1"     => "0111111",
@@ -33,6 +33,29 @@ mod code {
         "D|M"   => "1010101"
     };
     
+    // Maps string representations of the dest portion of c-instructions to their binary equivalent
+    static DEST_TABLE: phf::Map<&'static str, &'static str> = phf_map! {
+        ""      => "000",
+        "M"     => "001",
+        "D"     => "010",
+        "MD"    => "011",
+        "A"     => "100",
+        "AM"    => "101",
+        "AD"    => "110",
+        "AMD"   => "111"
+    };
+
+     // Maps string representations of the jump portion of c-instructions to their binary equivalent
+     static JUMP_TABLE: phf::Map<&'static str, &'static str> = phf_map! {
+        ""      => "000",
+        "JGT"   => "001",
+        "JEQ"   => "010",
+        "JGE"   => "011",
+        "JLT"   => "100",
+        "JNE"   => "101",
+        "JLE"   => "110",
+        "JMP"   => "111"
+    };
     
     pub fn translate_a_instruction() {
     
